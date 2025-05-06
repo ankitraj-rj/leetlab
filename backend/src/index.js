@@ -1,17 +1,19 @@
 import express from "express";
 import dotenv from "dotenv";
+import authRoutes from "./routes/auth.routes.js";
 
 dotenv.config();
 
 const app = express();
-const port = 3000;
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
+app.use(express.json());
 
-console.log("this is your port",process.env.PORT)
+app.use("/api/v1/auth",authRoutes);
+
+app.get("/",(req,res)=>{
+  res.send(" Hello Guys Welcome to leetlab 🔥 ")
+})
 
 app.listen(process.env.PORT, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Example app listening on port ${process.env.PORT}`);
 });
