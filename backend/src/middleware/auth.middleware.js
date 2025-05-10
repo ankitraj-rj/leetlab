@@ -2,7 +2,8 @@ import jwt from "jsonwebtoken";
 import db from "../libs/db.js";
 
 // middleware is a security guard
-export const authMiddleware = async (req, res, next) => {
+// if user is already login then this middleware is useful
+const authMiddleware = async (req, res, next) => {
   try {
     const token = req.cookies.jwt;
     if (!token) {
@@ -42,10 +43,10 @@ export const authMiddleware = async (req, res, next) => {
 
     req.user = user;
     next();
-
   } catch (error) {
-    console.error("Error authenticating user:",error);
-    res.status(500).json({message:"Error authencating user"});
+    console.error("Error authenticating user:", error);
+    res.status(500).json({ message: "Error authencating user" });
   }
 };
 
+export default authMiddleware ;
