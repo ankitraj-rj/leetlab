@@ -40,7 +40,7 @@ enum Difficulty {
 
 model Problem {
   id           String     @id @default(uuid())
-  tittle       String
+  title       String
   description  String
   difficulty   Difficulty
   tags         String[] // ["tag1","tag2","tag3"]
